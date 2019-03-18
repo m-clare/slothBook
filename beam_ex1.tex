@@ -1,0 +1,113 @@
+\documentclass{article}%
+\usepackage[T1]{fontenc}%
+\usepackage[utf8]{inputenc}%
+\usepackage{lmodern}%
+\usepackage{textcomp}%
+\usepackage{lastpage}%
+\usepackage{amsmath}%
+\usepackage{booktabs}%
+\usepackage{caption}%
+\captionsetup{labelformat=empty}%
+%
+%
+%
+\begin{document}%
+\normalsize%
+\section{Design Parameters}%
+\label{sec:Design Parameters}%
+\subsection{Design Load}%
+\label{subsec:Design Load}%
+\begin{align*} M_u = 150.0 \text{ k-ft}\end{align*}
+
+%
+\subsection{Design Parameters}%
+\label{subsec:Design Parameters}%
+\begin{center}
+\captionof{table}{Steel Properties}%
+\begin{tabular}{ccc}
+\toprule
+ $f_y\text{ (ksi)}$ &  $\epsilon_y$ &  $E_s\text{ (ksi)}$ \\
+\midrule
+               60.0 &         0.002 &             29000.0 \\
+\bottomrule
+\end{tabular}
+%
+\end{center}%
+\begin{center}
+\captionof{table}{Concrete Properties}%
+\begin{tabular}{ccc}
+\toprule
+ $f'_c\text{ (ksi)}$ &  $\epsilon_c$ &  $\beta$ \\
+\midrule
+                 5.0 &         0.003 &      0.8 \\
+\bottomrule
+\end{tabular}
+%
+\end{center}%
+\begin{center}
+\captionof{table}{Section Properties}%
+\begin{tabular}{ccc}
+\toprule
+ b (in) &  h (in) &  d (in) \\
+\midrule
+   12.0 &    12.0 &    10.0 \\
+\bottomrule
+\end{tabular}
+%
+\end{center}
+
+%
+\section{Calculate Balanced Reinforcement Ratio}%
+\label{sec:Calculate Balanced Reinforcement Ratio}%
+\subsection{Balanced Reinforcement Ratio}%
+\label{subsec:Balanced Reinforcement Ratio}%
+\begin{align*}\xi_{b} &= \frac{\epsilon_c}{\epsilon_c + \epsilon_y} =\frac{0.003}{0.003 + 0.002} = 0.6 \\\\ \rho_{b} &= 0.85 \cdot \beta \frac{f'_c}{f_y} \cdot \xi_b= 0.85 \cdot 0.8 \frac{5.0 \text{ ksi}}{60 \text{ ksi}} \cdot 0.6 = 0.034 \end{align*}
+
+%
+\subsection{Ensure Tension Controlled Section}%
+\label{subsec:Ensure Tension Controlled Section}%
+\begin{align*} \xi_{lim} &= \frac{\epsilon_c}{\epsilon_c + 0.005} = \frac{0.003}{0.003 + 0.005} = 0.375 \\\\ \rho_{lim} &= 0.85 \cdot \beta \frac{f'_c}{f_y} \cdot \xi_{lim} \\ \rho_{lim} &= 0.85 \cdot 0.8 \frac{5.0 \text{ ksi}}{60 \text{ ksi}} \cdot 0.375 = 0.02125 \\\\ x_{lim} &= \xi_{lim} \cdot d = 0.375 \cdot 10.0 \text{ in} = 3.75 \text{ in}\end{align*}
+
+%
+\newpage%
+\section{Determine Required Reinforcement}%
+\label{sec:Determine Required Reinforcement}%
+\subsection{Find Maximum Strength of Singly Reinforced Section}%
+\label{subsec:Find Maximum Strength of Singly Reinforced Section}%
+\begin{align*}M_{u, lim} &= \phi \cdot 0.85 \cdot f'_c \beta \text{ b} x_{lim}\left(\text{d} - \beta \frac{x_{lim}}{2}\right) \\\\M_{u, lim} &= 0.9 \cdot 0.85 \cdot (5.0 \text{ksi})(0.8)(12.0 \text{ in})(3.75 \text{ in})\left(10.0 \text{ in} - 0.8 \frac{3.75 \text{ in}}{2}\right) \cdot \frac{12 \text{ in}}{\text{ft}}\\\\M_{u, lim} &= 98.0 \text { k-ft}\end{align*}
+
+%
+\subsection{Calculate Required Reinforcement}%
+\label{subsec:Calculate Required Reinforcement}%
+$M_u \geq M_{u,lim} \Rightarrow$ Positive and Negative Reinforcement Required 
+%
+
+ \textbf{Positive Reinforcement}, $A_s$%
+\begin{align*}A_s &= \frac{0.85 f_c \beta x_{na} b}{\sigma_s} =\frac{0.85 (5.0 \text{ ksi}) 0.8 (3.75  \text{ in})(12.0 \text{ in})}{(60 \text{ ksi})} \\\\A_s &= 4.01 \text{ in}^2\end{align*}%
+
+ \textbf{Negative Reinforcement}, $A'_s$%
+\begin{align*}A'_s &= \frac{\phi 0.85 f_c \beta x_{na} \left(d - \beta \frac{x_{na}}{2}\right) b - M_u}{\phi \sigma'_s (d - d')} \\A'_s &= \frac{(0.9)(0.85)(5.0 \text{ ksi})(0.8)(3.75 \text{ in})\left(10.0 \text{ in} - 0.8 \frac{3.75 \text{ in}}{2}\right)(12.0 \text{ in}) - 150.0 \text{ k-ft}\frac{12 \text{ in}}{\text{ft}}}{0.9 (-40.6 \text{ ksi}) (10.0 \text{ in} - 2.0 \text{ in})} = 2.15 \text{ in}^2\end{align*}%
+\begin{center}
+\captionof{table}{Required Reinforcement by Bar Size}%
+\begin{tabular}{cccccc}
+\toprule
+ Bar No. &  $A_b({\text{ in}}^2)$ &  No. Pos. Bars &  No. Neg. Bars &  Pos. Bar Spacing (in) &  Neg. Bar Spacing (in) \\
+\midrule
+     3.0 &                   0.11 &           37.0 &           20.0 &                   0.32 &                   0.60 \\
+     4.0 &                   0.20 &           21.0 &           11.0 &                   0.57 &                   1.09 \\
+     5.0 &                   0.31 &           13.0 &            7.0 &                   0.92 &                   1.71 \\
+     6.0 &                   0.44 &           10.0 &            5.0 &                   1.20 &                   2.40 \\
+     7.0 &                   0.60 &            7.0 &            4.0 &                   1.71 &                   3.00 \\
+     8.0 &                   0.79 &            6.0 &            3.0 &                   2.00 &                   4.00 \\
+     9.0 &                   0.99 &            5.0 &            3.0 &                   2.40 &                   4.00 \\
+    10.0 &                   1.23 &            4.0 &            2.0 &                   3.00 &                   6.00 \\
+    11.0 &                   1.48 &            3.0 &            2.0 &                   4.00 &                   6.00 \\
+    14.0 &                   2.41 &            2.0 &            1.0 &                   6.00 &                  12.00 \\
+    18.0 &                   3.98 &            2.0 &            1.0 &                   6.00 &                  12.00 \\
+\bottomrule
+\end{tabular}
+%
+\end{center}
+
+%
+\end{document}
